@@ -158,7 +158,7 @@ public class JDK15AnnotationFinder implements IAnnotationFinder {
     return findAnnotation(cons.getDeclaringClass(), cons.getAnnotation(a), annotationClass, null, cons, null);
   }
 
-  private Map<Pair<Annotation, ?>, IAnnotation> m_annotations = Maps.newHashMap();
+  private Map<Pair<Annotation, ?>, IAnnotation> m_annotations = Collections.synchronizedMap(Maps.<Pair<Annotation, ?>, IAnnotation>newHashMap()); //Maps.newHashMap();
 
   private <A extends IAnnotation> A findAnnotation(Class cls, Annotation a,
                                                    Class<A> annotationClass,
